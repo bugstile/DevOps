@@ -1,0 +1,11 @@
+{
+  "name": "frontend-ci-demo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Running tests...\" && exit 0",
+    "build": "echo \"Building project...\" && exit 0",
+    "start": "echo \"Starting project...\" && exit 0"
+  },
+  "dependencies": {}
+}
