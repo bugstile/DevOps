@@ -9,24 +9,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Steg 1 – checka ut koden
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Steg 2 – installera Node.js 18
+      # Debug: visa att package.json finns
+      - name: Show workspace files
+        run: |
+          pwd
+          ls -la
+          test -f package.json && echo "package.json found" || (echo "package.json MISSING" && exit 1)
+          head -n 20 package.json
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # Steg 3 – installera dependencies
       - name: Install dependencies
         run: npm install
 
-      # Steg 4 – köra tester
       - name: Run tests
         run: npm test
 
-      # Steg 5 – bygga projektet
       - name: Build project
         run: npm run build
