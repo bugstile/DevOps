@@ -1,0 +1,32 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Steg 1 – checka ut koden
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Steg 2 – installera Node.js 18
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # Steg 3 – installera dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Steg 4 – köra tester
+      - name: Run tests
+        run: npm test
+
+      # Steg 5 – bygga projektet
+      - name: Build project
+        run: npm run build
