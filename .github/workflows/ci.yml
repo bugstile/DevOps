@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Extra: skriv ut info om körningen
+      # Extra: skriv ut info om körningen 
       - name: Print run context
         run: |
           echo "Branch:  $GITHUB_REF_NAME"
