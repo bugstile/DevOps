@@ -2,28 +2,29 @@ name: Frontend CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]  # Kör ENDAST på pushes till main
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Debug: visa att package.json finns
-      - name: Show workspace files
+      # Extra: skriv ut info om körningen
+      - name: Print run context
         run: |
-          pwd
-          ls -la
-          test -f package.json && echo "package.json found" || (echo "package.json MISSING" && exit 1)
-          head -n 20 package.json
+          echo "Branch:  $GITHUB_REF_NAME"
+          echo "Commit:  $GITHUB_SHA"
+          echo "Actor:   $GITHUB_ACTOR"
+          echo "Ref:     $GITHUB_REF"
+          echo "Repo:    $GITHUB_REPOSITORY"
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: npm
 
       - name: Install dependencies
         run: npm install
